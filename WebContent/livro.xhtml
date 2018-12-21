@@ -31,7 +31,7 @@
 						<h:outputLabel value="Preço:" for="preco" />
 						<h:inputText id="preco" value="#{livroBean.livro.preco}" label="Preço" required="true" requiredMessage="Preço obrigatório." 
 							validatorMessage="Valor mínimo de R$ 1,00 e máximo de R$ 1.000,00.">
-							<f:validateDoubleRange minimum="1.0" maximum="1.000"/>
+							<f:validateDoubleRange minimum="1" maximum="1000"/>
 						</h:inputText>
 		
 						<h:outputLabel value="Data de Lançamento:" for="dataLancamento" />
@@ -95,6 +95,11 @@
 							<h:outputText value="#{livro.dataLancamento.time}" >
 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo" />
 							</h:outputText>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Alterar</f:facet>
+						<h:commandLink value="Alterar" action="#{livroBean.carregar(livro)}" />
 					</h:column>
 					
 					<h:column>

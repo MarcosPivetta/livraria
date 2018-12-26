@@ -60,6 +60,9 @@
 						<h:column>
 							<h:outputText value="Autor selecionado: #{autor.nome}" />
 						</h:column>
+						<h:column>
+							<h:commandLink value="X" action="#{livroBean.removerAutorDoLivro(autor)}" />
+						</h:column>
 					</h:dataTable>
 				
 				</fieldset>
@@ -92,9 +95,9 @@
 					
 					<h:column>
 						<f:facet name="header">Data</f:facet>
-							<h:outputText value="#{livro.dataLancamento.time}" >
-								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo" />
-							</h:outputText>
+						<h:outputText value="#{livro.dataLancamento.time}" >
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo" />
+						</h:outputText>
 					</h:column>
 					
 					<h:column>

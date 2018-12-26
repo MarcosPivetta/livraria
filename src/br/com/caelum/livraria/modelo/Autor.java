@@ -11,7 +11,7 @@ public class Autor {
 	@GeneratedValue
 	private Integer id;
 	private String nome;
-
+	
 	public String getNome() {
 		return nome;
 	}

@@ -8,8 +8,8 @@
 	<ui:composition template="_template.xhtml">
 	
 		<f:metadata>
-			<f:viewParam name="autorId" value="#{autorBean.autorId}"/>
-			<f:viewAction action="#{autorBean.carregarAutorPeloId}" if="#{param.autorId != null}" />
+    		<f:viewParam name="autorId" value="#{autorBean.autorId}"/>
+    		<f:viewAction action="#{autorBean.carregarAutorPelaId}" if="#{param.autorId != null}"/>
 		</f:metadata>
 		
 		<ui:define name="titulo">Novo Autor</ui:define>
@@ -19,13 +19,22 @@
 				<fieldset>
 					<legend>Dados do Autor</legend>
 					<h:panelGrid columns="3">
+						
 						<h:outputLabel value="Nome:" for="nome" />
 						<h:inputText id="nome" value="#{autorBean.autor.nome}" required="true" 
 								requiredMessage="Nome do autor obrigatório." validatorMessage="O nome do autor deve conter no mínimo 5 caracteres."> 
 							<f:validateLength minimum="5" />
 						</h:inputText>
-						<h:message for="nome" />
+						<h:message for="nome" id="messageNome" />
+						
+						<h:outputLabel value="Email:" for="email" />
+						<h:inputText id="email" value="#{autorBean.autor.email}" required="true">
+							<f:passThroughAttribute name="type" value="email" />
+						</h:inputText>
+						<h:message for="email" id="messageEmail" />
+						
 						<h:commandButton value="Gravar" action="#{autorBean.gravar}" />
+						
 					</h:panelGrid>
 				</fieldset>
 			</h:form>
@@ -33,6 +42,11 @@
 		
 			<h:form id="formTabelaAutores">
 				<h:dataTable value="#{autorBean.autores}" var="autor" id="tabelaAutores">
+					
+					<h:column>
+						<f:facet name="header">ID</f:facet>
+						<h:outputText value="#{autor.id}" />
+					</h:column>
 					
 					<h:column>
 						<f:facet name="header">Autores</f:facet>

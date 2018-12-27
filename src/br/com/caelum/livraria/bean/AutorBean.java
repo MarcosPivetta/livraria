@@ -14,42 +14,22 @@ import br.com.caelum.livraria.util.RedirectView;
 public class AutorBean {
 
 	private Autor autor = new Autor();
-	
 	private Integer autorId;
 
-	public Autor getAutor() {
-		return autor;
-	}
-
 	public Integer getAutorId() {
-		return autorId;
+	    return autorId;
 	}
 
 	public void setAutorId(Integer autorId) {
-		this.autorId = autorId;
+	    this.autorId = autorId;
 	}
 	
-	public void carregarAutorPeloId() {
-		
-		this.autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
+	public Autor getAutor() {
+		return autor;
 	}
 	
 	public List<Autor> getAutores() {
 		return new DAO<Autor>(Autor.class).listaTodos();
-	}
-
-	public void remover(Autor autor) {
-		System.out.println("Removendo autor");
-
-		new DAO<Autor>(Autor.class).remove(autor);
-
-	}
-
-	public void carregar(Autor autor) {
-		System.out.println("Carregando autor");
-
-		this.autor = autor;
-
 	}
 	
 	public RedirectView gravar() {
@@ -64,6 +44,24 @@ public class AutorBean {
 		this.autor = new Autor();
 
 		return new RedirectView("livro");
+	}
+	
+	public void remover(Autor autor) {
+		System.out.println("Removendo autor");
+
+		new DAO<Autor>(Autor.class).remove(autor);
+
+	}
+	
+	public void carregar(Autor autor) {
+		System.out.println("Carregando autor");
+
+		this.autor = autor;
+
+	}
+	
+	public void carregarAutorPelaId() {
+	    this.autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
 	}
 	
 }

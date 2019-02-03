@@ -26,7 +26,7 @@
 						
 						<p:outputLabel value="Senha:" for="senha" />
 						
-						<p:password id="senha" value="#{loginBean.usuario.senha}" feedback="true" requiredMessage="Senha obrigatória." />
+						<p:password id="senha" value="#{loginBean.usuario.senha}" feedback="true" required="true" requiredMessage="Senha obrigatória." />
 						<p:message for="senha" id="messageSenha" />
 						
 						<p:commandButton value="Efetue Login" action="#{loginBean.efetuarLogin}" update="@form" process="@form" />

@@ -40,8 +40,7 @@ public class LoginBean {
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().remove("usuarioLogado");
-		
-		return "/login?faces-redirect=true";
+		return "login?faces-redirect=true";
 	}
 
 }

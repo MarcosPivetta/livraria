@@ -6,73 +6,87 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-	<ui:composition template="_template.xhtml">
-	
-		<f:metadata>
-    		<f:viewParam name="autorId" value="#{autorBean.autorId}"/>
-    		<f:viewAction action="#{autorBean.carregarAutorPelaId}" if="#{param.autorId != null}"/>
-		</f:metadata>
-		
-		<ui:define name="titulo">
-			<p:outputPanel>Novo Autor</p:outputPanel>
-		</ui:define>
-		
-		<ui:define name="conteudo">
-			<h:form id="autor">
-				<p:fieldset legend="Dados do Autor">
-					<h:panelGrid columns="3">
-						
-						<p:outputLabel value="Nome:" for="nome" />
-						<p:inputText id="nome" value="#{autorBean.autor.nome}" required="true" 
-								requiredMessage="Nome do autor obrigatório." validatorMessage="O nome do autor deve conter no mínimo 5 caracteres."> 
-							<f:validateLength minimum="5" />
-						</p:inputText>
-						<p:message for="nome" id="messageNome" />
-						
-						<p:outputLabel value="Email:" for="email" />
-						<p:inputText id="email" value="#{autorBean.autor.email}" required="true" requiredMessage="Email do autor obrigatório." validatorMessage="Email inválido">
-							<f:attribute name="type" value="email" />
-							<f:passThroughAttribute name="placeholder" value="Email do Autor" />
-							<f:validateRegex pattern=".+@.+"></f:validateRegex>
-							<f:ajax event="blur" render="messageEmail" />
-						</p:inputText>
-						<p:message for="email" id="messageEmail" />
-						
-						<p:commandButton value="Gravar" action="#{autorBean.gravar}" process="@form" update="@form :formTabelaAutores" />
-						
-					</h:panelGrid>
-				</p:fieldset>
-			</h:form>
-		
-		
-			<h:form id="formTabelaAutores">
-				<h:dataTable value="#{autorBean.autores}" var="autor" id="tabelaAutores">
-					
-					<h:column>
-						<f:facet name="header">ID</f:facet>
-						<h:outputText value="#{autor.id}" />
-					</h:column>
-					
-					<h:column>
-						<f:facet name="header">Autores</f:facet>
-						<h:outputText value="#{autor.nome}" />
-					</h:column>
-								
-					<h:column>
-						<f:facet name="header">Alterar</f:facet>
-						<h:commandLink value="Alterar" action="#{autorBean.carregar(autor)}" />
-					</h:column>
-														
-					<h:column>
-						<f:facet name="header">Remover</f:facet>
-						<h:commandLink value="Remover" action="#{autorBean.remover(autor)}" />
-					</h:column>
-				
-				</h:dataTable>
-			</h:form>	
-		</ui:define>
-		
-		<ui:define name="rodape">Cadastro de Autores</ui:define>
-	</ui:composition>
+<ui:composition template="_template.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="autorId" value="#{autorBean.autorId}" />
+		<f:viewAction action="#{autorBean.carregarAutorPelaId}"
+			if="#{param.autorId != null}" />
+	</f:metadata>
+
+	<ui:define name="titulo">
+		<p:outputPanel>Novo Autor</p:outputPanel>
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="autor">
+			<p:fieldset legend="Dados do Autor">
+				<h:panelGrid columns="3">
+
+					<p:outputLabel value="Nome:" for="nome" />
+					<p:inputText id="nome" value="#{autorBean.autor.nome}"
+						required="true" requiredMessage="Nome do autor obrigatório."
+						validatorMessage="O nome do autor deve conter no mínimo 5 caracteres.">
+						<f:validateLength minimum="5" />
+					</p:inputText>
+					<p:message for="nome" id="messageNome" />
+
+					<p:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{autorBean.autor.email}"
+						required="true" requiredMessage="Email do autor obrigatório."
+						validatorMessage="Email inválido">
+						<f:attribute name="type" value="email" />
+						<f:passThroughAttribute name="placeholder" value="Email do Autor" />
+						<f:validateRegex pattern=".+@.+"></f:validateRegex>
+						<f:ajax event="blur" render="messageEmail" />
+					</p:inputText>
+					<p:message for="email" id="messageEmail" />
+
+					<p:commandButton value="Gravar" action="#{autorBean.gravar}"
+						process="@form" update="@form :formTabelaAutores" />
+
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+
+
+		<style type="text/css">
+			.ui-datalist {
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+
+			.ui-datalist-item {
+				padding: 3px;
+				padding-left: 20px;
+			}
+			
+			.paginated .ui-datalist-data {
+				padding-left: 20px;
+			}
+		</style>
+
+		<h:form id="formTabelaAutores">
+
+			<p:dataList value="#{autorBean.autores}" var="autor"
+				type="definition">
+				<f:facet name="header">
+           			Basic
+        		</f:facet>
+        		
+        		<p:commandLink styleClass="ui-icon ui-icon-pencil" style="float:left;margin-right:10px;"
+        			action="#{autorBean.carregar(autor)}" update=":autor" />
+        		
+        		<p:commandLink styleClass="ui-icon ui-icon-trash" style="float:left;margin-right:10px;"
+        			action="#{autorBean.remover(autor)}" update="@form"/>
+        		
+        		#{autor.nome} - #{autor.email}
+        	</p:dataList>
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="rodape">Cadastro de Autores</ui:define>
+</ui:composition>
 
 </html>

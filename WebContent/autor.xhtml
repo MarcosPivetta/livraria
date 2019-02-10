@@ -73,10 +73,10 @@
 				<f:facet name="header">
            			Basic
         		</f:facet>
+
+         		<p:commandButton icon="fa fa-fw fa-edit" action="#{autorBean.carregar(autor)}" update=":autor" />
         		
-        		<p:commandButton icon="fa fa-fw fa-edit" action="#{autorBean.carregar(autor)}" update=":autor" />
-        		
-        		<p:commandButton icon="fa fa-fw fa-remove" action="#{autorBean.remover(autor)}" update="@form"/>
+        		<p:commandButton icon="fa fa-fw fa-remove" action="#{autorBean.remover(autor)}" update="@form" />
         		
         		#{autor.nome} - #{autor.email}
         	</p:dataList>

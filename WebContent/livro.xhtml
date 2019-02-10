@@ -116,13 +116,16 @@
 
 		<h:form id="formTabelaLivros">
 			<p:dataTable value="#{livroBean.livros}" var="livro"
-				id="tabelaLivros">
+				id="tabelaLivros" rows="10"
+                 paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5,10,15">
 
 				<p:column headerText="ID" sortBy="#{livro.id}">
 					<h:outputText value="#{livro.id}" />
 				</p:column>
 
-				<p:column headerText="Título">
+				<p:column headerText="Título"  filterBy="#{livro.titulo}" filterMatchMode="contains">
 					<h:outputText value="#{livro.titulo}" />
 				</p:column>
 

@@ -9,15 +9,18 @@
 	<h:head />
 	<h:body>
 		<div id="cabecalho">
-			<h:graphicImage library="img" name="logo.png" />
-			
-			<h:form>
-				<p:themeSwitcher id="basic" style="width:165px">
-		            <f:selectItem itemLabel="Choose Theme" itemValue="" />
-		            <f:selectItem itemLabel="Aristo" itemValue="aristo" />
-		            <f:selectItem itemLabel="Blitzer" itemValue="blitzer" />
-		        </p:themeSwitcher>
-			</h:form>
+			<p:panelGrid columns="2">
+				<h:graphicImage library="img" name="logo.png" />
+				
+				<h:form rendered="#{usuarioLogado != null}">
+					<p:themeSwitcher id="basic" style="width:165px" value="#{temaBean.tema}">
+			            <f:selectItem itemLabel="Choose Theme" itemValue="" />
+			            <f:selectItem itemLabel="Aristo" itemValue="aristo" />
+			            <f:selectItem itemLabel="Blitzer" itemValue="blitzer" />
+			            <f:ajax />
+			        </p:themeSwitcher>
+				</h:form>
+			</p:panelGrid>
 			
 			<p:growl id="messages" showDetail="true" autoUpdate="true" />
 			

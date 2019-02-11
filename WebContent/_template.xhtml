@@ -25,8 +25,9 @@
 			
 			<h:form rendered="#{usuarioLogado != null}">
 			    <p:menuButton value="Menu" icon="fa fa-bars">
-			        <p:menuitem value="Livro" action="livro" icon="fa fa-share-square-o"/>
-			        <p:menuitem value="Autores" action="autor" icon="fa fa-share-square-o"/>
+			        <p:menuitem value="Livro" action="livro?faces-redirect=true" icon="fa fa-share-square-o"/>
+			        <p:menuitem value="Autores" action="autor?faces-redirect=true" icon="fa fa-share-square-o"/>
+			        <p:menuitem value="Vendas" action="vendas?faces-redirect=true" icon="fa fa-share-square-o"/>
 			        <p:separator />
 			        <p:menuitem value="Logout" action="#{loginBean.deslogar}" icon="fa fa-fw fa-remove"/>
 			    </p:menuButton>

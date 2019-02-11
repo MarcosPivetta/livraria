@@ -14,9 +14,8 @@
 				
 				<h:form rendered="#{usuarioLogado != null}">
 					<p:themeSwitcher id="basic" style="width:165px" value="#{temaBean.tema}">
-			            <f:selectItem itemLabel="Choose Theme" itemValue="" />
-			            <f:selectItem itemLabel="Aristo" itemValue="aristo" />
-			            <f:selectItem itemLabel="Blitzer" itemValue="blitzer" />
+			            <f:selectItem itemLabel="Escolha seu tema:" itemValue="" />
+			            <f:selectItems itemLabel="#{tema}" var="tema" value="#{temaBean.temas}" itemValue="#{tema}" />
 			            <f:ajax />
 			        </p:themeSwitcher>
 				</h:form>
